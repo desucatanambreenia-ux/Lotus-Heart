@@ -271,6 +271,68 @@ console.log("Lotus & Heart connected to Supabase!");
 
   </form>
 </section>
+  </section>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("signupMessage");
+  message.textContent = "Creating your account...";
+
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  const name = document.getElementById("signupName").value;
+  const age = parseInt(document.getElementById("signupAge").value);
+  const country = document.getElementById("signupCountry").value;
+  const gender = document.getElementById("signupGender").value;
+  const lookingFor = document.getElementById("signupLookingFor").value;
+  const bio = document.getElementById("signupBio").value;
+  const interests = document.getElementById("signupInterests").value;
+
+  if (age < 18) {
+    message.textContent = "You must be 18 or older to join Lotus & Heart.";
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = error.message;
+    return;
+  }
+
+  if (!data.user) {
+    message.textContent = "Please check your email to confirm your account.";
+    return;
+  }
+
+  const { error: profileError } = await supabase
+    .from("profiles")
+    .insert({
+      id: data.user.id,
+      name: name,
+      age: age,
+      country: country,
+      gender: gender,
+      looking_for: lookingFor,
+      bio: bio,
+      interests: interests
+    });
+
+  if (profileError) {
+    message.textContent = "Account created, but your profile could not be saved: " + profileError.message;
+    return;
+  }
+
+  message.textContent = "Welcome to Lotus & Heart! 🌸 Your account has been created.";
+});
+</script>
+
 </body>
 </html>
 </body>
