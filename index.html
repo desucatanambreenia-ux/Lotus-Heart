@@ -1,195 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Lotus & Heart | Connecting Hearts Across the Globe</title>
+<title>Lotus & Heart | Connecting Hearts Across the Globe</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: #fffaf7;
-      color: #4b3b3b;
-    }
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: #fffaf7;
+  color: #4b3b3b;
+}
 
-    header {
-      background: linear-gradient(135deg, #f8e8e8, #fff7f2);
-      text-align: center;
-      padding: 70px 20px 60px;
-    }
+.hero {
+  min-height: 100vh;
+  text-align: center;
+  padding-bottom: 70px;
+}
 
-    .logo {
-      font-size: 48px;
-      color: #9b5f70;
-      margin-bottom: 10px;
-    }
+.photo {
+  width: 100%;
+  max-height: 620px;
+  object-fit: cover;
+  display: block;
+}
 
-    .tagline {
-      font-size: 18px;
-      color: #765c63;
-      letter-spacing: 1px;
-    }
+.logo {
+  font-size: 46px;
+  color: #8f596b;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
 
-    .hero {
-      max-width: 900px;
-      margin: auto;
-      padding: 70px 20px;
-      text-align: center;
-    }
+.tagline {
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #765c63;
+  padding: 0 20px;
+}
 
-    .hero h1 {
-      font-size: 42px;
-      color: #704958;
-      margin-bottom: 20px;
-    }
+.intro {
+  max-width: 720px;
+  margin: 30px auto;
+  padding: 0 25px;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #68565b;
+}
 
-    .hero p {
-      font-size: 19px;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: auto;
-      color: #68565b;
-    }
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 16px 35px;
+  background: #9b5f70;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 17px;
+}
 
-    .button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 32px;
-      background: #9b5f70;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 16px;
-    }
+.section {
+  padding: 70px 20px;
+  background: white;
+  text-align: center;
+}
 
-    .section {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
+.section h2 {
+  color: #704958;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
 
-    .section h2 {
-      font-size: 32px;
-      color: #704958;
-      margin-bottom: 40px;
-    }
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
 
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      max-width: 1000px;
-      margin: auto;
-    }
+.card {
+  width: 280px;
+  padding: 30px 25px;
+  background: #fff8f5;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(100,60,70,0.08);
+}
 
-    .card {
-      width: 280px;
-      padding: 30px 25px;
-      background: #fff8f5;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(100, 60, 70, 0.08);
-    }
+.icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
 
-    .card .icon {
-      font-size: 38px;
-      margin-bottom: 15px;
-    }
+.card h3 {
+  color: #805363;
+  margin-bottom: 12px;
+}
 
-    .card h3 {
-      color: #805363;
-      margin-bottom: 12px;
-    }
+.card p {
+  line-height: 1.6;
+  color: #6c5b5f;
+}
 
-    .card p {
-      line-height: 1.6;
-      color: #6c5b5f;
-    }
+footer {
+  padding: 35px 20px;
+  text-align: center;
+  background: #f5e5e5;
+  color: #765c63;
+}
 
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      background: #f5e5e5;
-      color: #765c63;
-      font-size: 14px;
-    }
+@media (max-width: 600px) {
+  .photo {
+    max-height: 480px;
+  }
 
-    @media (max-width: 600px) {
-      .logo {
-        font-size: 38px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+  .logo {
+    font-size: 36px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">♡ Lotus & Heart ♡</div>
-    <div class="tagline">Connecting Hearts Across the Globe</div>
-  </header>
+<section class="hero">
 
-  <section class="hero">
-    <h1>Somewhere in the world, your person may be waiting.</h1>
+  <img
+    src="2b45240c-83cf-4122-843a-c24d794d2403.jpeg"
+    alt="Lotus & Heart"
+    class="photo"
+  >
 
-    <p>
-      Lotus & Heart is a gentle space for people who believe that meaningful
-      connections can begin anywhere — across cities, countries, and oceans.
-    </p>
+  <div class="logo">♡ Lotus & Heart ♡</div>
 
-    <a href="#join" class="button">Begin Your Journey</a>
-  </section>
+  <div class="tagline">
+    Connecting Hearts Across the Globe
+  </div>
 
-  <section class="section" id="join">
+  <p class="intro">
+    Somewhere in the world, your person may be waiting.
+    Discover meaningful connections across cities, countries,
+    and oceans — one conversation at a time.
+  </p>
 
-    <h2>A Place for Meaningful Connections</h2>
+  <a href="#discover" class="button">
+    Begin Your Journey
+  </a>
 
-    <div class="cards">
+</section>
 
-      <div class="card">
-        <div class="icon">🌸</div>
-        <h3>Be Yourself</h3>
-        <p>
-          Create a profile that feels true to who you are and what you're
-          looking for.
-        </p>
-      </div>
+<section class="section" id="discover">
 
-      <div class="card">
-        <div class="icon">🌍</div>
-        <h3>Meet Across Borders</h3>
-        <p>
-          Discover interesting people from different places, cultures, and
-          walks of life.
-        </p>
-      </div>
+  <h2>A Place for Meaningful Connections</h2>
 
-      <div class="card">
-        <div class="icon">♡</div>
-        <h3>Find a Connection</h3>
-        <p>
-          Start a conversation and see where a genuine connection might lead.
-        </p>
-      </div>
+  <div class="cards">
 
+    <div class="card">
+      <div class="icon">🌸</div>
+      <h3>Be Yourself</h3>
+      <p>
+        Create a profile that feels true to who you are
+        and what you're looking for.
+      </p>
     </div>
 
-  </section>
+    <div class="card">
+      <div class="icon">🌍</div>
+      <h3>Meet Across Borders</h3>
+      <p>
+        Discover people from different places,
+        cultures, and walks of life.
+      </p>
+    </div>
 
-  <footer>
-    © 2026 Lotus & Heart · Connecting Hearts Across the Globe
-  </footer>
+    <div class="card">
+      <div class="icon">♡</div>
+      <h3>Find a Connection</h3>
+      <p>
+        Start a conversation and see where
+        a genuine connection might lead.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Lotus & Heart · Connecting Hearts Across the Globe
+</footer>
 
 </body>
 </html>
