@@ -296,11 +296,19 @@ document.getElementById("signupForm").addEventListener("submit", async function(
   }
 
   try {
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password
-    });
+    const signupPromise = supabase.auth.signUp({
+  email: email,
+  password: password
+});
 
+const timeoutPromise = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error("Supabase is not responding after 10 seconds.")), 10000)
+);
+
+const { data, error } = await Promise.race([
+  signupPromise,
+  timeoutPromise
+]);
     if (error) {
       message.textContent = "Signup error: " + error.message;
       return;
