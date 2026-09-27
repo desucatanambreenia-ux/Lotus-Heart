@@ -279,6 +279,51 @@ document.getElementById("signupForm").addEventListener("submit", async function(
   const message = document.getElementById("signupMessage");
   message.textContent = "Creating your account...";
 
+  const email = document.getElementById("signupEmail").value.trim();
+  const password = document.getElementById("signupPassword").value;
+
+  const name = document.getElementById("signupName").value.trim();
+  const age = parseInt(document.getElementById("signupAge").value);
+  const country = document.getElementById("signupCountry").value.trim();
+  const gender = document.getElementById("signupGender").value;
+  const lookingFor = document.getElementById("signupLookingFor").value;
+  const bio = document.getElementById("signupBio").value.trim();
+  const interests = document.getElementById("signupInterests").value.trim();
+
+  if (age < 18) {
+    message.textContent = "You must be 18 or older to join Lotus & Heart.";
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      message.textContent = "Signup error: " + error.message;
+      return;
+    }
+
+    if (!data.user) {
+      message.textContent = "Something went wrong. Please try again.";
+      return;
+    }
+
+    message.textContent =
+      "Account created! 🌸 Please check your email to confirm your account. Then you can log in and complete your profile.";
+
+    document.getElementById("signupForm").reset();
+
+  } catch (err) {
+    message.textContent = "Connection error: " + err.message;
+  }
+});
+</script>
+  const message = document.getElementById("signupMessage");
+  message.textContent = "Creating your account...";
+
   const email = document.getElementById("signupEmail").value;
   const password = document.getElementById("signupPassword").value;
 
