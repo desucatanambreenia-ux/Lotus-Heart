@@ -1,389 +1,831 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lotus & Heart | Connecting Hearts Across the Globe</title>
+  <title>Lotus & Heart | Connecting Hearts Across the Globe</title>
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-body {
-  font-family: Georgia, "Times New Roman", serif;
-  background: #fffaf7;
-  color: #4b3b3b;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.hero {
-  min-height: 100vh;
-  text-align: center;
-  padding-bottom: 70px;
-}
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #fffaf7;
+      color: #4b3b3b;
+    }
 
-.photo {
-  width: 100%;
-  max-height: 620px;
-  object-fit: cover;
-  display: block;
-}
+    .hero {
+      min-height: 100vh;
+      text-align: center;
+      padding-bottom: 70px;
+    }
 
-.logo {
-  font-size: 46px;
-  color: #8f596b;
-  margin-top: 40px;
-  margin-bottom: 12px;
-}
+    .photo {
+      width: 100%;
+      max-height: 620px;
+      object-fit: cover;
+      display: block;
+    }
 
-.tagline {
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: #765c63;
-  padding: 0 20px;
-}
+    .logo {
+      font-size: 46px;
+      color: #8f596b;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
 
-.intro {
-  max-width: 720px;
-  margin: 30px auto;
-  padding: 0 25px;
-  font-size: 19px;
-  line-height: 1.8;
-  color: #68565b;
-}
+    .tagline {
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: #765c63;
+      padding: 0 20px;
+    }
 
-.button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 16px 35px;
-  background: #9b5f70;
-  color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  font-size: 17px;
-}
+    .intro {
+      max-width: 720px;
+      margin: 30px auto;
+      padding: 0 25px;
+      font-size: 19px;
+      line-height: 1.8;
+      color: #68565b;
+    }
 
-.section {
-  padding: 70px 20px;
-  background: white;
-  text-align: center;
-}
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 16px 35px;
+      background: #9b5f70;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 30px;
+      font-size: 17px;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-.section h2 {
-  color: #704958;
-  font-size: 32px;
-  margin-bottom: 40px;
-}
+    .button:hover {
+      background: #805363;
+    }
 
-.cards {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
+    .section {
+      padding: 70px 20px;
+      background: white;
+      text-align: center;
+    }
 
-.card {
-  width: 280px;
-  padding: 30px 25px;
-  background: #fff8f5;
-  border-radius: 18px;
-  box-shadow: 0 5px 20px rgba(100,60,70,0.08);
-}
+    .section h2 {
+      color: #704958;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
 
-.icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
 
-.card h3 {
-  color: #805363;
-  margin-bottom: 12px;
-}
+    .card {
+      width: 280px;
+      padding: 30px 25px;
+      background: #fff8f5;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(100, 60, 70, 0.08);
+    }
 
-.card p {
-  line-height: 1.6;
-  color: #6c5b5f;
-}
+    .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
 
-footer {
-  padding: 35px 20px;
-  text-align: center;
-  background: #f5e5e5;
-  color: #765c63;
-}
+    .card h3 {
+      color: #805363;
+      margin-bottom: 12px;
+    }
 
-@media (max-width: 600px) {
-  .photo {
-    max-height: 480px;
-  }
+    .card p {
+      line-height: 1.6;
+      color: #6c5b5f;
+    }
 
-  .logo {
-    font-size: 36px;
-  }
-}
-</style>
+    .signup-section {
+      padding: 70px 20px;
+      background: #fffaf7;
+      text-align: center;
+    }
+
+    .signup-section h2 {
+      color: #704958;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .signup-subtitle {
+      color: #765c63;
+      margin-bottom: 30px;
+    }
+
+    .signup-form {
+      max-width: 450px;
+      margin: 0 auto;
+      text-align: left;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(100, 60, 70, 0.08);
+    }
+
+    .signup-form label {
+      display: block;
+      margin-bottom: 6px;
+      color: #704958;
+      font-weight: bold;
+    }
+
+    .signup-form input,
+    .signup-form select,
+    .signup-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ddc8cc;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      background: #fffdfc;
+    }
+
+    .signup-form textarea {
+      resize: vertical;
+    }
+
+    .signup-form input:focus,
+    .signup-form select:focus,
+    .signup-form textarea:focus {
+      outline: none;
+      border-color: #9b5f70;
+    }
+
+    .age-note {
+      font-size: 13px;
+      color: #765c63;
+      margin-top: -10px;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .terms-note {
+      font-size: 13px;
+      color: #765c63;
+      line-height: 1.5;
+      margin: 15px 0;
+    }
+
+    #signupMessage {
+      margin-top: 20px;
+      text-align: center;
+      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 35px 20px;
+      text-align: center;
+      background: #f5e5e5;
+      color: #765c63;
+    }
+
+    @media (max-width: 600px) {
+      .photo {
+        max-height: 480px;
+      }
+
+      .logo {
+        font-size: 36px;
+      }
+
+      .intro {
+        font-size: 17px;
+      }
+
+      .signup-form {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<section class="hero">
+  <!-- HERO -->
+  <section class="hero">
 
-  <img
-    src="2b45240c-83cf-4122-843a-c24d794d2403.jpeg"
-    alt="Lotus & Heart"
-    class="photo"
-  >
+    <img
+      src="2b45240c-83cf-4122-843a-c24d794d2403.jpeg"
+      alt="Lotus & Heart"
+      class="photo"
+    >
 
-  <div class="logo">♡ Lotus & Heart ♡</div>
+    <div class="logo">♡ Lotus & Heart ♡</div>
 
-  <div class="tagline">
-    Connecting Hearts Across the Globe
-  </div>
-
-  <p class="intro">
-    Somewhere in the world, your person may be waiting.
-    Discover meaningful connections across cities, countries,
-    and oceans — one conversation at a time.
-  </p>
-
-  <a href="#signup" class="button">
-    Begin Your Journey
-  </a>
-
-</section>
-
-<section class="section" id="discover">
-
-  <h2>A Place for Meaningful Connections</h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="icon">🌸</div>
-      <h3>Be Yourself</h3>
-      <p>
-        Create a profile that feels true to who you are
-        and what you're looking for.
-      </p>
+    <div class="tagline">
+      Connecting Hearts Across the Globe
     </div>
 
-    <div class="card">
-      <div class="icon">🌍</div>
-      <h3>Meet Across Borders</h3>
-      <p>
-        Discover people from different places,
-        cultures, and walks of life.
-      </p>
+    <p class="intro">
+      Somewhere in the world, your person may be waiting.
+      Discover meaningful connections across cities, countries,
+      and oceans — one conversation at a time.
+    </p>
+
+    <a href="#signup" class="button">
+      Begin Your Journey
+    </a>
+
+  </section>
+
+
+  <!-- DISCOVER -->
+  <section class="section" id="discover">
+
+    <h2>A Place for Meaningful Connections</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">🌸</div>
+
+        <h3>Be Yourself</h3>
+
+        <p>
+          Create a profile that feels true to who you are
+          and what you're looking for.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="icon">🌍</div>
+
+        <h3>Meet Across Borders</h3>
+
+        <p>
+          Discover people from different places,
+          cultures, and walks of life.
+        </p>
+      </div>
+
+
+      <div class="card">
+        <div class="icon">♡</div>
+
+        <h3>Find a Connection</h3>
+
+        <p>
+          Start a conversation and see where
+          a genuine connection might lead.
+        </p>
+      </div>
+
     </div>
 
-    <div class="card">
-      <div class="icon">♡</div>
-      <h3>Find a Connection</h3>
-      <p>
-        Start a conversation and see where
-        a genuine connection might lead.
+  </section>
+
+
+  <!-- SIGNUP -->
+  <section class="signup-section" id="signup">
+
+    <h2>Begin Your Journey</h2>
+
+    <p class="signup-subtitle">
+      Create your Lotus & Heart profile 🌸
+    </p>
+
+
+    <form id="signupForm" class="signup-form">
+
+      <label for="signupEmail">Email</label>
+
+      <input
+        type="email"
+        id="signupEmail"
+        autocomplete="email"
+        required
+      >
+
+
+      <label for="signupPassword">Password</label>
+
+      <input
+        type="password"
+        id="signupPassword"
+        autocomplete="new-password"
+        minlength="8"
+        required
+      >
+
+      <p class="age-note">
+        Password must contain at least 8 characters.
       </p>
-    </div>
 
-  </div>
 
-</section>
+      <label for="signupName">Your Name</label>
 
-<footer>
-  © 2026 Lotus & Heart · Connecting Hearts Across the Globe
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+      <input
+        type="text"
+        id="signupName"
+        maxlength="100"
+        autocomplete="name"
+        required
+      >
 
-<script>
-const SUPABASE_URL = 'https://gmbxyuyputllzryigygq.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_kHBslFxGOI9nBuyxfGp46w_F5uHazl6';
 
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
+      <label for="signupAge">Age</label>
 
-console.log("Lotus & Heart connected to Supabase!");
-</script>
-<section id="signup" style="padding: 60px 20px; background: #fffaf7; text-align: center;">
-  <h2>Begin Your Journey</h2>
-  <p>Create your Lotus & Heart profile 🌸</p>
+      <input
+        type="number"
+        id="signupAge"
+        min="18"
+        max="100"
+        required
+      >
 
-  <form id="signupForm" style="max-width: 450px; margin: 30px auto; text-align: left;">
+      <p class="age-note">
+        Lotus & Heart is for adults aged 18 and above.
+      </p>
 
-    <label>Email</label>
-    <input type="email" id="signupEmail" required
-      style="width:100%; padding:12px; margin:8px 0 18px;">
 
-    <label>Password</label>
-    <input type="password" id="signupPassword" required minlength="8"
-      style="width:100%; padding:12px; margin:8px 0 18px;">
+      <label for="signupCountry">Country</label>
 
-    <label>Your Name</label>
-    <input type="text" id="signupName" required
-      style="width:100%; padding:12px; margin:8px 0 18px;">
+      <input
+        type="text"
+        id="signupCountry"
+        maxlength="100"
+        autocomplete="country-name"
+        required
+      >
 
-    <label>Age</label>
-    <input type="number" id="signupAge" required min="18" max="100"
-      style="width:100%; padding:12px; margin:8px 0 18px;">
 
-    <label>Country</label>
-    <input type="text" id="signupCountry" required
-      style="width:100%; padding:12px; margin:8px 0 18px;">
+      <label for="signupGender">Gender</label>
 
-    <label>Gender</label>
-    <select id="signupGender" required
-      style="width:100%; padding:12px; margin:8px 0 18px;">
-      <option value="">Choose</option>
-      <option>Woman</option>
-      <option>Man</option>
-      <option>Non-binary</option>
-      <option>Prefer not to say</option>
-    </select>
+      <select id="signupGender" required>
 
-    <label>Looking for</label>
-    <select id="signupLookingFor" required
-      style="width:100%; padding:12px; margin:8px 0 18px;">
-      <option value="">Choose</option>
-      <option>Relationship</option>
-      <option>Friendship</option>
-      <option>Marriage</option>
-      <option>Not sure yet</option>
-    </select>
+        <option value="">
+          Choose
+        </option>
 
-    <label>About You</label>
-    <textarea id="signupBio" rows="4"
-      style="width:100%; padding:12px; margin:8px 0 18px;"></textarea>
+        <option value="Woman">
+          Woman
+        </option>
 
-    <label>Interests</label>
-    <input type="text" id="signupInterests"
-      placeholder="Music, travel, cooking..."
-      style="width:100%; padding:12px; margin:8px 0 18px;">
+        <option value="Man">
+          Man
+        </option>
 
-    <button type="submit" class="button">
-      Create My Account
-    </button>
+        <option value="Non-binary">
+          Non-binary
+        </option>
 
-    <p id="signupMessage" style="margin-top:20px;"></p>
+        <option value="Prefer not to say">
+          Prefer not to say
+        </option>
 
-  </form>
-</section>
+      </select>
 
-<script>
-document.getElementById("signupForm").addEventListener("submit", async function(event) {
-  event.preventDefault();
 
-  const message = document.getElementById("signupMessage");
-  message.textContent = "Creating your account...";
+      <label for="signupLookingFor">Looking for</label>
 
-  const email = document.getElementById("signupEmail").value.trim();
-  const password = document.getElementById("signupPassword").value;
+      <select id="signupLookingFor" required>
 
-  const name = document.getElementById("signupName").value.trim();
-  const age = parseInt(document.getElementById("signupAge").value);
-  const country = document.getElementById("signupCountry").value.trim();
-  const gender = document.getElementById("signupGender").value;
-  const lookingFor = document.getElementById("signupLookingFor").value;
-  const bio = document.getElementById("signupBio").value.trim();
-  const interests = document.getElementById("signupInterests").value.trim();
+        <option value="">
+          Choose
+        </option>
 
-  if (age < 18) {
-    message.textContent = "You must be 18 or older to join Lotus & Heart.";
-    return;
-  }
+        <option value="Relationship">
+          Relationship
+        </option>
 
-  try {
-    const signupPromise = supabase.auth.signUp({
-  email: email,
-  password: password
-});
+        <option value="Friendship">
+          Friendship
+        </option>
 
-const timeoutPromise = new Promise((_, reject) =>
-  setTimeout(() => reject(new Error("Supabase is not responding after 10 seconds.")), 10000)
-);
+        <option value="Marriage">
+          Marriage
+        </option>
 
-const { data, error } = await Promise.race([
-  signupPromise,
-  timeoutPromise
-]);
-    if (error) {
-      message.textContent = "Signup error: " + error.message;
-      return;
-    }
+        <option value="Not sure yet">
+          Not sure yet
+        </option>
 
-    if (!data.user) {
-      message.textContent = "Something went wrong. Please try again.";
-      return;
-    }
+      </select>
 
-    message.textContent =
-      "Account created! 🌸 Please check your email to confirm your account. Then you can log in and complete your profile.";
 
-    document.getElementById("signupForm").reset();
+      <label for="signupBio">About You</label>
 
-  } catch (err) {
-    message.textContent = "Connection error: " + err.message;
-  }
-});
-</script>
-  const message = document.getElementById("signupMessage");
-  message.textContent = "Creating your account...";
+      <textarea
+        id="signupBio"
+        rows="4"
+        maxlength="1000"
+        placeholder="Tell people a little about yourself..."
+      ></textarea>
 
-  const email = document.getElementById("signupEmail").value;
-  const password = document.getElementById("signupPassword").value;
 
-  const name = document.getElementById("signupName").value;
-  const age = parseInt(document.getElementById("signupAge").value);
-  const country = document.getElementById("signupCountry").value;
-  const gender = document.getElementById("signupGender").value;
-  const lookingFor = document.getElementById("signupLookingFor").value;
-  const bio = document.getElementById("signupBio").value;
-  const interests = document.getElementById("signupInterests").value;
+      <label for="signupInterests">Interests</label>
 
-  if (age < 18) {
-    message.textContent = "You must be 18 or older to join Lotus & Heart.";
-    return;
-  }
+      <input
+        type="text"
+        id="signupInterests"
+        maxlength="500"
+        placeholder="Music, travel, cooking..."
+      >
 
-  const { data, error } = await supabase.auth.signUp({
-    email: email,
-    password: password
-  });
 
-  if (error) {
-    message.textContent = error.message;
-    return;
-  }
+      <p class="terms-note">
+        By creating an account, you confirm that you are 18 or older
+        and agree to follow the Lotus & Heart community rules.
+      </p>
 
-  if (!data.user) {
-    message.textContent = "Please check your email to confirm your account.";
-    return;
-  }
 
-  const { error: profileError } = await supabase
-    .from("profiles")
-    .insert({
-      id: data.user.id,
-      name: name,
-      age: age,
-      country: country,
-      gender: gender,
-      looking_for: lookingFor,
-      bio: bio,
-      interests: interests
+      <button
+        type="submit"
+        class="button"
+        id="signupButton"
+      >
+        Create My Account
+      </button>
+
+
+      <p id="signupMessage"></p>
+
+    </form>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Lotus & Heart · Connecting Hearts Across the Globe
+  </footer>
+
+
+  <script>
+
+    /*
+     * ==========================================================
+     * LOTUS & HEART — SUPABASE CONNECTION
+     * ==========================================================
+     */
+
+    const SUPABASE_URL =
+      "https://gmbxyuyputllzryigygq.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_kHBslFxGOI9nBuyxfGp46w_F5uHazl6";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+    /*
+     * ==========================================================
+     * SIGNUP
+     * ==========================================================
+     */
+
+    const signupForm =
+      document.getElementById("signupForm");
+
+    const signupMessage =
+      document.getElementById("signupMessage");
+
+    const signupButton =
+      document.getElementById("signupButton");
+
+
+    signupForm.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+
+      signupMessage.textContent =
+        "Creating your account...";
+
+      signupMessage.style.color = "#765c63";
+
+      signupButton.disabled = true;
+
+      signupButton.textContent =
+        "Creating Account...";
+
+
+      /*
+       * Get form information
+       */
+
+      const email =
+        document.getElementById("signupEmail")
+        .value
+        .trim()
+        .toLowerCase();
+
+      const password =
+        document.getElementById("signupPassword")
+        .value;
+
+      const name =
+        document.getElementById("signupName")
+        .value
+        .trim();
+
+      const age =
+        parseInt(
+          document.getElementById("signupAge").value,
+          10
+        );
+
+      const country =
+        document.getElementById("signupCountry")
+        .value
+        .trim();
+
+      const gender =
+        document.getElementById("signupGender")
+        .value;
+
+      const lookingFor =
+        document.getElementById("signupLookingFor")
+        .value;
+
+      const bio =
+        document.getElementById("signupBio")
+        .value
+        .trim();
+
+      const interests =
+        document.getElementById("signupInterests")
+        .value
+        .trim();
+
+
+      /*
+       * Basic validation
+       */
+
+      if (age < 18) {
+
+        signupMessage.textContent =
+          "You must be 18 or older to join Lotus & Heart.";
+
+        signupMessage.style.color = "#9b3d3d";
+
+        signupButton.disabled = false;
+
+        signupButton.textContent =
+          "Create My Account";
+
+        return;
+      }
+
+
+      if (password.length < 8) {
+
+        signupMessage.textContent =
+          "Your password must contain at least 8 characters.";
+
+        signupMessage.style.color = "#9b3d3d";
+
+        signupButton.disabled = false;
+
+        signupButton.textContent =
+          "Create My Account";
+
+        return;
+      }
+
+
+      try {
+
+        /*
+         * Create Supabase authentication account.
+         *
+         * Profile information is also stored in
+         * user_metadata so it can be used by a
+         * secure Supabase database trigger later.
+         */
+
+        const {
+          data,
+          error
+        } = await supabaseClient.auth.signUp({
+
+          email: email,
+
+          password: password,
+
+          options: {
+
+            data: {
+
+              name: name,
+
+              age: age,
+
+              country: country,
+
+              gender: gender,
+
+              looking_for: lookingFor,
+
+              bio: bio,
+
+              interests: interests
+
+            }
+
+          }
+
+        });
+
+
+        /*
+         * Supabase returned an error
+         */
+
+        if (error) {
+
+          console.error("Signup error:", error);
+
+          signupMessage.textContent =
+            error.message;
+
+          signupMessage.style.color =
+            "#9b3d3d";
+
+          signupButton.disabled = false;
+
+          signupButton.textContent =
+            "Create My Account";
+
+          return;
+        }
+
+
+        /*
+         * No user was returned
+         */
+
+        if (!data || !data.user) {
+
+          signupMessage.textContent =
+            "Something went wrong. Please try again.";
+
+          signupMessage.style.color =
+            "#9b3d3d";
+
+          signupButton.disabled = false;
+
+          signupButton.textContent =
+            "Create My Account";
+
+          return;
+        }
+
+
+        /*
+         * If a session exists immediately,
+         * save the profile directly.
+         *
+         * If email confirmation is required,
+         * the metadata above remains attached to
+         * the authentication account and can be
+         * copied into the profiles table using
+         * the Supabase trigger we will add next.
+         */
+
+        if (data.session) {
+
+          const {
+            error: profileError
+          } = await supabaseClient
+            .from("profiles")
+            .upsert({
+
+              id: data.user.id,
+
+              name: name,
+
+              age: age,
+
+              country: country,
+
+              gender: gender,
+
+              looking_for: lookingFor,
+
+              bio: bio,
+
+              interests: interests
+
+            });
+
+
+          if (profileError) {
+
+            console.error(
+              "Profile error:",
+              profileError
+            );
+
+            signupMessage.textContent =
+              "Your account was created, but we couldn't finish your profile. Please contact support.";
+
+            signupMessage.style.color =
+              "#9b3d3d";
+
+            signupButton.disabled = false;
+
+            signupButton.textContent =
+              "Create My Account";
+
+            return;
+          }
+        }
+
+
+        /*
+         * Success
+         */
+
+        signupMessage.textContent =
+          "Your account has been created! 🌸 Please check your email to confirm your account.";
+
+        signupMessage.style.color =
+          "#6b8a63";
+
+        signupForm.reset();
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          "Unexpected signup error:",
+          error
+        );
+
+        signupMessage.textContent =
+          "We couldn't connect to Lotus & Heart right now. Please try again.";
+
+        signupMessage.style.color =
+          "#9b3d3d";
+
+      }
+
+
+      finally {
+
+        signupButton.disabled = false;
+
+        signupButton.textContent =
+          "Create My Account";
+
+      }
+
     });
 
-  if (profileError) {
-    message.textContent = "Account created, but your profile could not be saved: " + profileError.message;
-    return;
-  }
-
-  message.textContent = "Welcome to Lotus & Heart! 🌸 Your account has been created.";
-});
-</script>
+  </script>
 
 </body>
 </html>
+```
+
+### One important thing before you test it
+
+Your new HTML is cleaned up, but **there is one Supabase database step we should do next**.
+
+Because Supabase may require the new member to confirm their email before they receive a login session, we should create a secure **Supabase trigger** that automatically takes the signup information and creates the corresponding row in your `profiles` table.
+
+That will give you:
+
+**Signup → Supabase account → email confirmation → profile automatically created**
+
+rather than risking a user having an account but no profile.
+
+Also, your current code's **publishable key is okay to have in frontend code**. Do **not** put a Supabase secret/service-role key into this file.
+
+Once this signup foundation is working, the next pieces I'd build are **login → member profile → browse members → likes/matches → messaging**, and only then the Premium/payment system. That gives you a proper foundation for eventually making Lotus & Heart earn money.
