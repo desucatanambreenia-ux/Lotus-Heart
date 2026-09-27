@@ -195,6 +195,21 @@ footer {
 <footer>
   © 2026 Lotus & Heart · Connecting Hearts Across the Globe
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = 'https://gmbxyuyputllzryigygq.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_kHBslFxGOI9nBuyxfGp46w_F5uHazl6';
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+console.log("Lotus & Heart connected to Supabase!");
+</script>
+
+</body>
+</html>
 </body>
 </html>
