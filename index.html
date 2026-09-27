@@ -208,7 +208,69 @@ const supabase = window.supabase.createClient(
 
 console.log("Lotus & Heart connected to Supabase!");
 </script>
+<section id="signup" style="padding: 60px 20px; background: #fffaf7; text-align: center;">
+  <h2>Begin Your Journey</h2>
+  <p>Create your Lotus & Heart profile 🌸</p>
 
+  <form id="signupForm" style="max-width: 450px; margin: 30px auto; text-align: left;">
+
+    <label>Email</label>
+    <input type="email" id="signupEmail" required
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <label>Password</label>
+    <input type="password" id="signupPassword" required minlength="8"
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <label>Your Name</label>
+    <input type="text" id="signupName" required
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <label>Age</label>
+    <input type="number" id="signupAge" required min="18" max="100"
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <label>Country</label>
+    <input type="text" id="signupCountry" required
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <label>Gender</label>
+    <select id="signupGender" required
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+      <option value="">Choose</option>
+      <option>Woman</option>
+      <option>Man</option>
+      <option>Non-binary</option>
+      <option>Prefer not to say</option>
+    </select>
+
+    <label>Looking for</label>
+    <select id="signupLookingFor" required
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+      <option value="">Choose</option>
+      <option>Relationship</option>
+      <option>Friendship</option>
+      <option>Marriage</option>
+      <option>Not sure yet</option>
+    </select>
+
+    <label>About You</label>
+    <textarea id="signupBio" rows="4"
+      style="width:100%; padding:12px; margin:8px 0 18px;"></textarea>
+
+    <label>Interests</label>
+    <input type="text" id="signupInterests"
+      placeholder="Music, travel, cooking..."
+      style="width:100%; padding:12px; margin:8px 0 18px;">
+
+    <button type="submit" class="button">
+      Create My Account
+    </button>
+
+    <p id="signupMessage" style="margin-top:20px;"></p>
+
+  </form>
+</section>
 </body>
 </html>
 </body>
