@@ -812,20 +812,3 @@
 
 </body>
 </html>
-```
-
-### One important thing before you test it
-
-Your new HTML is cleaned up, but **there is one Supabase database step we should do next**.
-
-Because Supabase may require the new member to confirm their email before they receive a login session, we should create a secure **Supabase trigger** that automatically takes the signup information and creates the corresponding row in your `profiles` table.
-
-That will give you:
-
-**Signup → Supabase account → email confirmation → profile automatically created**
-
-rather than risking a user having an account but no profile.
-
-Also, your current code's **publishable key is okay to have in frontend code**. Do **not** put a Supabase secret/service-role key into this file.
-
-Once this signup foundation is working, the next pieces I'd build are **login → member profile → browse members → likes/matches → messaging**, and only then the Premium/payment system. That gives you a proper foundation for eventually making Lotus & Heart earn money.
